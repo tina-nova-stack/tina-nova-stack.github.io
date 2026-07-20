@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Нумеролог Тина — Код вашей судьбы</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #faf8ff;
+      color: #2e1a47;
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    :root {
+      --primary: #6a3b8a;
+      --primary-light: #8b5ba8;
+      --gold: #c9a84c;
+      --gold-light: #f0e0b0;
+      --bg-light: #f8f4ff;
+      --shadow: 0 10px 30px rgba(106, 59, 138, 0.12);
+      --radius: 20px;
+    }
+    h1, h2, h3 {
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+    h2 {
+      font-size: 2.2rem;
+      margin-bottom: 1.5rem;
+      position: relative;
+      display: inline-block;
+    }
+    h2:after {
+      content: '';
+      position: absolute;
+      bottom: -8px;
+      left: 0;
+      width: 60px;
+      height: 4px;
+      background: var(--gold);
+      border-radius: 4px;
+    }
+    .section {
+      padding: 80px 0;
+    }
+    .section-alt {
+      background: white;
+    }
+    .btn {
+      display: inline-block;
+      padding: 14px 40px;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
+    }
+    .btn-primary {
+      background: var(--primary);
+      color: white;
+      box-shadow: 0 8px 20px rgba(106, 59, 138, 0.3);
+    }
+    .btn-primary:hover {
+      background: #5a2e77;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(106, 59, 138, 0.4);
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: #2e1a47;
+    }
+    .btn-gold:hover {
+      background: #b8933a;
+      transform: translateY(-3px);
+      box-shadow: 0 12px 28px rgba(201, 168, 76, 0.4);
+    }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--primary);
+      color: var(--primary);
+    }
+    .btn-outline:hover {
+      background: var(--primary);
+      color: white;
+    }
+    header {
+      background: linear-gradient(135deg, #2e1a47 0%, #4a2a66 100%);
+      color: white;
+      padding: 20px 0 0 0;
+      position: relative;
+      overflow: hidden;
+    }
+    header .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      padding-bottom: 40px;
+    }
+    .header-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      padding-bottom: 10px;
+      flex-wrap: wrap;
+    }
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+    }
+    .logo span {
+      color: var(--gold);
+    }
+    .social-header {
+      display: flex;
+      gap: 16px;
+      align-items: center;
+    }
+    .social-header a {
+      color: rgba(255,255,255,0.7);
+      font-size: 1.4rem;
+      transition: 0.3s;
+    }
+    .social-header a:hover {
+      color: var(--gold);
+      transform: translateY(-2px);
+    }
+    .hero {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      gap: 40px;
+      margin-top: 20px;
+    }
+    .hero-text {
+      flex: 1 1 50%;
+      text-align: left;
+    }
+    .hero-text h1 {
+      font-size: 3.2rem;
+      line-height: 1.2;
+      margin-bottom: 20px;
+    }
+    .hero-text h1 span {
+      color: var(--gold);
+    }
+    .hero-text p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      margin-bottom: 30px;
+      max-width: 500px;
+    }
+    .hero-text .btn-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+    .hero-calc {
+      flex: 1 1 40%;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(8px);
+      border-radius: var(--radius);
+      padding: 30px 25px;
+      border: 1px solid rgba(255,255,255,0.15);
+      text-align: left;
+      min-width: 280px;
+    }
+    .hero-calc h3 {
+      font-size: 1.3rem;
+      margin-bottom: 16px;
+      color: var(--gold-light);
+    }
+    .hero-calc label {
+      display: block;
+      font-size: 0.9rem;
+      margin-bottom: 6px;
+      opacity: 0.8;
+    }
+    .hero-calc input {
+      width: 100%;
+      padding: 14px 16px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      background: rgba(255,255,255,0.95);
+      margin-bottom: 16px;
+      color: #2e1a47;
+      font-weight: 500;
+    }
+    .hero-calc .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    .result-number {
+      margin-top: 16px;
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--gold);
+      text-align: center;
+      display: none;
+    }
+    .result-number.show {
+      display: block;
+    }
+    .result-desc {
+      font-size: 0.95rem;
+      opacity: 0.9;
+      text-align: center;
+      margin-top: 4px;
+      display: none;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .result-desc.show {
+      display: block;
+    }
+    nav {
+      background: rgba(255,255,255,0.05);
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      width: 100%;
+    }
+    nav ul {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    nav a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--gold);
+    }
+    .about-grid {
+      display: flex;
+      gap: 50px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .about-photo {
+      flex: 1 1 250px;
+      text-align: center;
+    }
+    .about-photo img {
+      width: 100%;
+      max-width: 300px;
+      border-radius: 50%;
+      box-shadow: var(--shadow);
+      border: 6px solid white;
+      background: #eee;
+      aspect-ratio: 1/1;
+      object-fit: cover;
+    }
+    .about-text {
+      flex: 2 1 400px;
+    }
+    .about-text h3 {
+      font-size: 1.8rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .about-text .sub {
+      color: var(--gold);
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    .about-text p {
+      margin-bottom: 16px;
+    }
+    .badge-group {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+    .badge {
+      background: var(--bg-light);
+      padding: 8px 18px;
+      border-radius: 30px;
+      font-size: 0.85rem;
+      border-left: 4px solid var(--gold);
+      font-weight: 500;
+    }
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .pain-item {
+      background: white;
+      padding: 22px 18px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      transition: 0.3s;
+      border: 1px solid transparent;
+    }
+    .pain-item:hover {
+      border-color: var(--gold);
+      transform: translateY(-4px);
+    }
+    .pain-item i {
+      font-size: 1.8rem;
+      color: var(--gold);
+      width: 40px;
+      text-align: center;
+    }
+    .certificates-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-top: 20px;
+    }
+    .certificates-grid img {
+      width: 100%;
+      height: auto;
+      border-radius: 12px;
+      box-shadow: var(--shadow);
+      border: 2px solid var(--gold);
+      transition: transform 0.3s, box-shadow 0.3s;
+      object-fit: contain;
+      background: white;
+    }
+    .certificates-grid img:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 30px rgba(106,59,138,0.2);
+    }
+    .system-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 30px;
+      margin-top: 20px;
+    }
+    .system-card {
+      background: white;
+      padding: 30px 20px 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+      transition: 0.3s;
+      border-bottom: 5px solid var(--primary-light);
+    }
+    .system-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 40px rgba(106,59,138,0.12);
+    }
+    .system-card i {
+      font-size: 2.8rem;
+      color: var(--gold);
+      margin-bottom: 16px;
+      display: block;
+    }
+    .system-card h3 {
+      font-size: 1.3rem;
+      color: var(--primary);
+      margin-bottom: 10px;
+    }
+    .system-card p {
+      font-size: 0.95rem;
+      color: #3d2b4a;
+      line-height: 1.5;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+    .service-card {
+      background: white;
+      padding: 16px 14px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+      border-top: 5px solid var(--primary-light);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 30px rgba(106,59,138,0.12);
+    }
+    .service-card h3 {
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+    .service-card .price {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--primary);
+      margin: 10px 0 4px;
+    }
+    .service-card .price small {
+      font-size: 0.8rem;
+      font-weight: 400;
+      color: #777;
+      display: block;
+      margin-top: 2px;
+    }
+    .service-card ul {
+      text-align: left;
+      list-style: none;
+      margin: 10px 0 14px;
+      flex-grow: 1;
+    }
+    .service-card ul li {
+      padding: 4px 0;
+      border-bottom: 1px solid #f0ecf5;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      line-height: 1.3;
+    }
+    .service-card ul li:before {
+      content: "✦";
+      color: var(--gold);
+      font-weight: 700;
+      margin-right: 4px;
+    }
+    .service-card .btn {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 0.85rem;
+      margin-top: auto;
+    }
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 30px;
+    }
+    .review {
+      background: white;
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position: relative;
+    }
+    .review .quote {
+      font-style: italic;
+      margin: 12px 0;
+    }
+    .review .author {
+      font-weight: 600;
+      color: var(--primary);
+    }
+    .review .author small {
+      font-weight: 400;
+      color: #888;
+      font-size: 0.85rem;
+    }
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+    .blog-item {
+      background: white;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      transition: 0.3s;
+    }
+    .blog-item:hover {
+      transform: translateY(-6px);
+    }
+    .blog-item .content {
+      padding: 20px;
+    }
+    .blog-item h4 {
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .blog-item .meta {
+      color: #999;
+      font-size: 0.8rem;
+      display: block;
+      margin-bottom: 10px;
+    }
+    .contact-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: flex-start;
+    }
+    .contact-form {
+      flex: 1 1 400px;
+      background: white;
+      padding: 35px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      margin-bottom: 16px;
+      font-size: 1rem;
+      transition: 0.3s;
+      font-family: inherit;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(106,59,138,0.1);
+    }
+    .contact-form textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+    .contact-info {
+      flex: 1 1 250px;
+    }
+    .contact-info .item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+    .contact-info .item i {
+      font-size: 1.6rem;
+      width: 50px;
+      height: 50px;
+      background: var(--bg-light);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+    }
+    .contact-info .item a {
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 500;
+    }
+    .contact-info .item a:hover {
+      text-decoration: underline;
+    }
+    footer {
+      background: #1e0f2e;
+      color: rgba(255,255,255,0.7);
+      padding: 30px 0;
+      text-align: center;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 992px) {
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      }
+      .certificates-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+    }
+    @media (max-width: 768px) {
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      }
+      .service-card {
+        padding: 20px 16px;
+      }
+      .service-card ul li {
+        font-size: 0.9rem;
+      }
+      h1 { font-size: 2.4rem !important; }
+      .hero-text { text-align: center; }
+      .hero-text .btn-group { justify-content: center; }
+      .hero-text p { margin-left: auto; margin-right: auto; }
+      .hero-calc { flex: 1 1 100%; }
+      .about-grid { flex-direction: column; text-align: center; }
+      h2:after { left: 50%; transform: translateX(-50%); }
+      .section { padding: 50px 0; }
+      .header-top { flex-direction: column; gap: 10px; }
+      .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .certificates-grid img {
+        max-height: none;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========== HEADER ========== -->
+  <header>
+    <div class="container">
+      <div class="header-top">
+        <div class="logo">Нумеролог <span>Тина</span></div>
+        <div class="social-header">
+          <a href="https://t.me/tina_nova3" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+          <a href="https://www.instagram.com/code.cyber.pro?igsh=MXNjN3NnemltMTU4cA==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="https://max.ru/u/f9LHodD0cOL2WrAv5ReCvoYVC8abUczZZbn2r4dFDY0FUSfpjcejiJRxFJ8" target="_blank" aria-label="Max"><i class="fas fa-globe"></i></a>
+        </div>
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#about">Обо мне</a></li>
+          <li><a href="#certificates">Сертификаты</a></li>
+          <li><a href="#system">Моя система</a></li>
+          <li><a href="#services">Услуги</a></li>
+          <li><a href="#reviews">Отзывы</a></li>
+          <li><a href="#blog">Блог</a></li>
+          <li><a href="#contact">Контакты</a></li>
+        </ul>
+      </nav>
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Подсвечиваю ваши <span>скрытые проблемы</span> и помогаю найти ясные решения через цифры даты рождения</h1>
+          <p>Индивидуальный разбор кода судьбы, совместимость, прогнозы. Цифровой психоанализ.</p>
+          <div class="btn-group">
+            <a href="#contact" class="btn btn-gold"><i class="fas fa-calendar-check"></i> Записаться</a>
+            <a href="#services" class="btn btn-outline" style="border-color: rgba(255,255,255,0.5); color: white;">Узнать больше</a>
+          </div>
+        </div>
+        <div class="hero-calc">
+          <h3>Рассчитайте число судьбы</h3>
+          <label for="birthdate">Ваша дата рождения</label>
+          <input type="date" id="birthdate" value="1990-01-01" />
+          <button class="btn btn-primary" id="calcBtn">Рассчитать</button>
+          <div id="resultDisplay">
+            <div class="result-number" id="lifePathNumber"></div>
+            <div class="result-desc" id="lifePathDesc"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========== О СЕБЕ ========== -->
+  <section class="section" id="about">
+    <div class="container fade-in">
+      <h2>Обо мне</h2>
+      <div class="about-grid">
+        <div class="about-photo">
+          <img src="https://sun9-36.vkuserphoto.ru/s/v1/ig2/d7YU-ylY1AXPw23jSULaJ05UjfypBl9EzcADqLT2OIxi5SeQUJajWVFT7ck7hI0yn4e160Us9ZRwIJOgHhjz3EG9.jpg?quality=95&as=32x32,48x48,72x72,108x108,160x160,240x240,360x360,480x480,540x540,640x640,720x720,1024x1024&from=bu&u=YoaowPjh30vwcJF7ejg7iNY8sVxQFQ7jU5Zid7Oh0js&cs=1024x0" alt="Нумеролог Тина" />
+        </div>
+        <div class="about-text">
+          <h3>Тина Нова</h3>
+          <div class="sub">Цифровой психолог, исследователь кода судьбы</div>
+          <p>Я пришла в нумерологию через личный запрос — мне нужно было понять, почему одни решения даются легко, а другие забирают энергию. Цифры показали мои скрытые блоки и настоящие таланты. Теперь я помогаю другим увидеть свою уникальную структуру, убрать внутренние конфликты и выйти на ясный путь.</p>
+          <p>Я использую нумерологию и психологию как рабочие инструменты, выстраивая чёткую причинно-следственную цепочку: от запроса клиента к его истинному запросу. Это позволяет не гадать, а точно диагностировать корень боли и точечно убрать его.</p>
+          <div class="badge-group">
+            <span class="badge"><i class="fas fa-check-circle" style="color:var(--gold);"></i> 3 года практики</span>
+            <span class="badge"><i class="fas fa-check-circle" style="color:var(--gold);"></i> 150+ консультаций</span>
+            <span class="badge"><i class="fas fa-check-circle" style="color:var(--gold);"></i> Практический психолог</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== БОЛИ ========== -->
+  <section class="section section-alt" id="problems">
+    <div class="container fade-in">
+      <h2>С чем я работаю</h2>
+      <p style="margin-bottom:10px;">Узнайте себя в этих запросах — я помогу найти ответ.</p>
+      <div class="pain-grid">
+        <div class="pain-item"><i class="fas fa-heart"></i> Разобраться в отношениях с партнёром</div>
+        <div class="pain-item"><i class="fas fa-briefcase"></i> Выбрать прибыльную профессию</div>
+        <div class="pain-item"><i class="fas fa-coins"></i> Понять, почему не хватает денег</div>
+        <div class="pain-item"><i class="fas fa-child"></i> Узнать таланты своего ребёнка</div>
+        <div class="pain-item"><i class="fas fa-calendar-alt"></i> Получить годовой прогноз</div>
+        <div class="pain-item"><i class="fas fa-sync-alt"></i> Найти своё предназначение и самореализацию</div>
+        <div class="pain-item"><i class="fas fa-star"></i> Понять свои таланты и способности</div>
+        <div class="pain-item"><i class="fas fa-balance-scale"></i> Найти баланс между работой и личной жизнью</div>
+        <div class="pain-item"><i class="fas fa-tree"></i> Проработать родовые сценарии и привычки</div>
+        <div class="pain-item"><i class="fas fa-shield-alt"></i> Укрепить личные границы и уверенность</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== СЕРТИФИКАТЫ ========== -->
+  <section class="section" id="certificates">
+    <div class="container fade-in">
+      <h2>Сертификаты</h2>
+      <p style="margin-bottom:10px;">Обучение в академии цифровой психологии «Анаэль».</p>
+      <div class="certificates-grid">
+        <img src="https://fs-thb01.getcourse.ru/fileservice/file/thumbnail/h/e8c0f17d975bd616ee0ecd63217fe65c.png/s/300x/a/61471/sc/300" alt="Сертификат 1" />
+        <img src="https://fs-thb02.getcourse.ru/fileservice/file/thumbnail/h/a7f7032bbf38085209b90e18c617ac98.png/s/300x/a/61471/sc/102" alt="Сертификат 2" />
+        <img src="https://fs-thb01.getcourse.ru/fileservice/file/thumbnail/h/10bc209d20aec3c4a72178ed2aab9cb5.png/s/300x/a/61471/sc/310" alt="Сертификат 3" />
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== СИСТЕМА ========== -->
+  <section class="section section-alt" id="system">
+    <div class="container fade-in">
+      <h2>Моя система</h2>
+      <p style="margin-bottom:10px;">Каждый метод — это ключ к пониманию себя, своих задач и возможностей.</p>
+      <div class="system-grid">
+        <div class="system-card">
+          <i class="fas fa-user"></i>
+          <h3>Психоматрица</h3>
+          <p>Глубокий анализ личности на основе даты рождения. Показывает характер, таланты, сильные и слабые стороны, зоны роста.</p>
+        </div>
+        <div class="system-card">
+          <i class="fas fa-road"></i>
+          <h3>Кармическая матрица</h3>
+          <p>Раскрывает ваш жизненный путь, кармические задачи и психологические блоки, которые мешают двигаться вперёд.</p>
+        </div>
+        <div class="system-card">
+          <i class="fas fa-coins"></i>
+          <h3>Матрица судьбы</h3>
+          <p>Фокусируется на денежном потоке и кармическом хвосте — помогает понять, как привлекать ресурсы и завершать старые долги.</p>
+        </div>
+        <div class="system-card">
+          <i class="fas fa-calendar-alt"></i>
+          <h3>Прогноз</h3>
+          <p>Детальный разбор ключевых периодов: благоприятные дни, месяцы и годы для важных решений, смены деятельности и личного роста.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== УСЛУГИ ========== -->
+  <section class="section" id="services">
+    <div class="container fade-in">
+      <h2>Услуги и цены</h2>
+      <p style="margin-bottom:16px; font-size:0.95rem;">Выберите подходящий формат — от экспресс‑разбора до полного прогноза.</p>
+      <div class="services-grid">
+        <div class="service-card">
+          <h3>Экспресс-разбор</h3>
+          <div class="price">2 500 ₽ <small>аудио 30 мин</small></div>
+          <ul>
+            <li>Сильные и слабые стороны</li>
+            <li>Уроки и задачи</li>
+            <li>Финансовый успех</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Выбрать</a>
+        </div>
+        <div class="service-card" style="border-top-color: var(--gold);">
+          <h3>Психоматрица</h3>
+          <div class="price">5 000 ₽ <small>файл</small></div>
+          <ul>
+            <li>Полный квадрат Пифагора</li>
+            <li>Характер, таланты, здоровье</li>
+            <li>Рекомендации по 1 запросу</li>
+          </ul>
+          <a href="#contact" class="btn btn-gold">Выбрать</a>
+        </div>
+        <div class="service-card" style="border-top-color: #2e1a47;">
+          <h3>Отношения</h3>
+          <div class="price">10 000 ₽ <small>файл + аудио 60 мин</small></div>
+          <ul>
+            <li>Психотип партнёров</li>
+            <li>Совместимость, периоды</li>
+            <li>Цели союза</li>
+            <li>Практические рекомендации</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Выбрать</a>
+        </div>
+        <div class="service-card" style="border-top-color: #8b5ba8;">
+          <h3>Кармическая матрица</h3>
+          <div class="price">9 000 ₽ <small>файл + аудио 60 мин</small></div>
+          <ul>
+            <li>Анализ личности и характера</li>
+            <li>Самореализация, финансы и профессия</li>
+            <li>Кармические задачи</li>
+            <li>Отношения, здоровье и энергия</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Выбрать</a>
+        </div>
+        <div class="service-card" style="border-top-color: #a97bc0;">
+          <h3>Личный прогноз</h3>
+          <div class="price">от 1 500 ₽ <small>файл + аудио 30 мин</small></div>
+          <ul>
+            <li>Вектор года</li>
+            <li>Детализация текущего месяца (или 12 месяцев)</li>
+            <li>Событийный фон дня</li>
+          </ul>
+          <a href="#contact" class="btn btn-primary">Выбрать</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ОТЗЫВЫ ========== -->
+  <section class="section section-alt" id="reviews">
+    <div class="container fade-in">
+      <h2>Отзывы</h2>
+      <div class="reviews-grid">
+        <div class="review">
+          <div class="author">Екатерина <small>число 3</small></div>
+          <div class="quote">«Пришла в раздрае из‑за увольнения. Тина показала, что мой талант в цифре 3 — творчество и общение. Я открыла своё дело по организации праздников и за 2 месяца вышла на стабильный доход. Огромное спасибо!»</div>
+        </div>
+        <div class="review">
+          <div class="author">Дмитрий <small>число 8</small></div>
+          <div class="quote">«Долго не мог понять, почему в отношениях вечные конфликты. Разбор совместимости показал наши слабые места. Мы начали работать над ними, и сейчас всё совершенно иначе. Рекомендую!»</div>
+        </div>
+        <div class="review">
+          <div class="author">Ольга <small>число 11</small></div>
+          <div class="quote">«Матрица судьбы открыла мне глаза на мои кармические задачи. Я перестала винить себя, начала действовать по подсказкам Тины. Чувствую лёгкость и веру в будущее. Благодарю!»</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== БЛОГ ========== -->
+  <section class="section" id="blog">
+    <div class="container fade-in">
+      <h2>Полезные статьи</h2>
+      <div class="blog-grid">
+        <div class="blog-item">
+          <div class="content">
+            <span class="meta"><i class="far fa-calendar-alt"></i> 15 июля 2026</span>
+            <h4>Что означает 11:11 в ангельской нумерологии</h4>
+            <p>Значение зеркального времени, духовное пробуждение и как использовать знак.</p>
+            <a href="https://anael.academy/angelskaya/chto-oznachaet-1111-v-angelskoj-numerologii/" target="_blank" style="color:var(--primary); font-weight:600;">Читать →</a>
+          </div>
+        </div>
+        <div class="blog-item">
+          <div class="content">
+            <span class="meta"><i class="far fa-calendar-alt"></i> 8 июля 2026</span>
+            <h4>Как рассчитать дату свадьбы в нумерологии</h4>
+            <p>Нумерологический подход к выбору идеальной даты для брака.</p>
+            <a href="https://anael.academy/relationships/kak-rasschitat-datu-svadby-v-numerologii/" target="_blank" style="color:var(--primary); font-weight:600;">Читать →</a>
+          </div>
+        </div>
+        <div class="blog-item">
+          <div class="content">
+            <span class="meta"><i class="far fa-calendar-alt"></i> 1 июля 2026</span>
+            <h4>Значение имени ребёнка в цифровом коде</h4>
+            <p>Как имя влияет на судьбу и таланты вашего малыша.</p>
+            <a href="https://anael.academy/name/znachenie-imeni-rebenka-2/" target="_blank" style="color:var(--primary); font-weight:600;">Читать →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== КОНТАКТЫ ========== -->
+  <section class="section section-alt" id="contact">
+    <div class="container fade-in">
+      <h2>Записаться на консультацию</h2>
+      <div class="contact-grid">
+        <div class="contact-form">
+          <form id="contactForm"> <!-- убран onsubmit, теперь управляет JS -->
+            <input type="text" placeholder="Ваше имя" name="name" required />
+            <input type="text" placeholder="Ваша дата рождения (например, 15.05.1990)" name="birthdate" required />
+            <input type="email" placeholder="Email" name="email" required />
+            <textarea placeholder="Коротко опишите ваш запрос (необязательно)" name="message"></textarea>
+            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
+          </form>
+          <p style="margin-top:12px; font-size:0.9rem; color:#666;">Отвечаю в течение 2 часов в рабочие часы</p>
+        </div>
+        <div class="contact-info">
+          <div class="item">
+            <i class="fab fa-telegram-plane"></i>
+            <div><strong>Telegram</strong><br /><a href="https://t.me/tina_nova3" target="_blank">@tina_nova3</a></div>
+          </div>
+          <div class="item">
+            <i class="fab fa-instagram"></i>
+            <div><strong>Instagram</strong><br /><a href="https://www.instagram.com/code.cyber.pro?igsh=MXNjN3NnemltMTU4cA==" target="_blank">@code.cyber.pro</a></div>
+          </div>
+          <div class="item">
+            <i class="fas fa-globe"></i>
+            <div><strong>Max</strong><br /><a href="https://max.ru/u/f9LHodD0cOL2WrAv5ReCvoYVC8abUczZZbn2r4dFDY0FUSfpjcejiJRxFJ8" target="_blank">Мой профиль</a></div>
+          </div>
+          <div class="item">
+            <i class="far fa-clock"></i>
+            <div><strong>Режим работы</strong><br />Пн–Пт 10:00 – 20:00 (МСК)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== ФУТЕР ========== -->
+  <footer>
+    <div class="container">
+      <p>© 2026 Нумеролог Тина. Все права защищены. <br /> Сайт создан с ❤️ для осознанных людей.</p>
+    </div>
+  </footer>
+
+  <!-- ========== JAVASCRIPT ========== -->
+  <script>
+    // ===== НАСТРОЙКИ ДЛЯ TELEGRAM (ВАШИ ДАННЫЕ УЖЕ ВСТАВЛЕНЫ) =====
+    const TELEGRAM_TOKEN = '8755845922:AAGPHrpUM69tPR6QO8JM2v4q5QtAyppSGS4';
+    const TELEGRAM_CHAT_ID = '1617996687';
+
+    // ===== КАЛЬКУЛЯТОР ЧИСЛА СУДЬБЫ =====
+    document.getElementById('calcBtn').addEventListener('click', function() {
+      const dateInput = document.getElementById('birthdate');
+      const date = new Date(dateInput.value);
+      if (isNaN(date)) {
+        alert('Пожалуйста, выберите корректную дату');
+        return;
+      }
+      const day = date.getDate();
+      const month = date.getMonth() + 1;
+      const year = date.getFullYear();
+      const digits = String(day) + String(month) + String(year);
+      let sum = 0;
+      for (let ch of digits) {
+        sum += parseInt(ch, 10);
+      }
+      let result = sum;
+      while (result > 9) {
+        let temp = 0;
+        for (let ch of String(result)) {
+          temp += parseInt(ch, 10);
+        }
+        result = temp;
+      }
+      const numDisplay = document.getElementById('lifePathNumber');
+      const descDisplay = document.getElementById('lifePathDesc');
+      numDisplay.textContent = 'Ваше число судьбы: ' + result;
+      numDisplay.classList.add('show');
+      const descriptions = {
+        1: 'Лидерство, самостоятельность, новаторство. Вы прирождённый лидер, склонны к инновациям и независимости. Вам важно начинать новые проекты и вести за собой других.',
+        2: 'Дипломатичность, партнёрство, чувствительность. Вы — прирождённый миротворец, умеете слушать и находить компромиссы. Гармония в отношениях — ваша главная ценность.',
+        3: 'Творчество, общение, оптимизм. Ваш дар — вдохновлять и развлекать. Вы легко находите общий язык с людьми и привносите радость в любую ситуацию.',
+        4: 'Стабильность, порядок, трудолюбие. Вы — опора для окружающих, цените надёжность и дисциплину. Постепенное движение вперёд приносит вам удовлетворение.',
+        5: 'Свобода, приключения, перемены. Вы жаждете новых впечатлений и не терпите рутины. Ваша гибкость и любопытство открывают множество дверей.',
+        6: 'Забота, семья, ответственность. Вы — хранитель домашнего очага, обладаете глубокой эмпатией. Ваша миссия — поддерживать и оберегать близких.',
+        7: 'Аналитика, мудрость, поиск истины. Вы — философ и исследователь, стремитесь понять суть вещей. Одиночество и размышления помогают вам обретать ясность.',
+        8: 'Власть, материальный успех, амбиции. Вы обладаете деловой хваткой и умением управлять ресурсами. Ваша цель — достичь высокого положения и финансовой независимости.',
+        9: 'Гуманизм, завершение, сострадание. Вы — альтруист, готовый помогать другим и менять мир к лучшему. Завершая один этап, вы открываете дорогу новому.'
+      };
+      descDisplay.textContent = descriptions[result] || 'Уникальный код вашей судьбы.';
+      descDisplay.classList.add('show');
+    });
+
+    // ===== ОТПРАВКА ФОРМЫ В TELEGRAM =====
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+
+      const form = e.target;
+      const formData = new FormData(form);
+      const name = formData.get('name') || 'Не указано';
+      const birthdate = formData.get('birthdate') || 'Не указано';
+      const email = formData.get('email') || 'Не указано';
+      const message = formData.get('message') || 'Не указано';
+
+      const text = `🔔 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📅 Дата рождения: ${birthdate}\n📧 Email: ${email}\n📝 Сообщение: ${message}`;
+
+      const url = `https://api.telegram.org/bot${TELEGRAM_TOKEN}/sendMessage`;
+
+      fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          chat_id: TELEGRAM_CHAT_ID,
+          text: text,
+          parse_mode: 'HTML'
+        })
+      })
+      .then(response => response.json())
+      .then(result => {
+        if (result.ok) {
+          alert('Спасибо! Тина свяжется с вами в ближайшее время.');
+          form.reset();
+        } else {
+          alert('Ошибка при отправке. Попробуйте ещё раз или напишите нам в Telegram.');
+        }
+      })
+      .catch(() => {
+        alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
+      });
+    });
+
+    // ===== АНИМАЦИЯ =====
+    const fadeElements = document.querySelectorAll('.fade-in');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.2 });
+    fadeElements.forEach(el => observer.observe(el));
+
+    // ===== АВТОЗАПУСК КАЛЬКУЛЯТОРА =====
+    window.addEventListener('load', function() {
+      document.getElementById('calcBtn').click();
+    });
+  </script>
+</body>
+</html>
