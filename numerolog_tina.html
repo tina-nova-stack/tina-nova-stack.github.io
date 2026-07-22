@@ -874,17 +874,18 @@
     </div>
   </section>
 
-  <!-- ========== КОНТАКТЫ ========== -->
+  <!-- ========== КОНТАКТЫ (ОБНОВЛЕНО: поле "запрос" стало обязательным) ========== -->
   <section class="section section-alt" id="contact">
     <div class="container fade-in">
       <h2>Записаться на консультацию</h2>
       <div class="contact-grid">
         <div class="contact-form">
-          <form id="contactForm"> <!-- убран onsubmit, теперь управляет JS -->
+          <form id="contactForm">
             <input type="text" placeholder="Ваше имя" name="name" required />
             <input type="text" placeholder="Ваша дата рождения (например, 15.05.1990)" name="birthdate" required />
             <input type="email" placeholder="Email" name="email" required />
-            <textarea placeholder="Коротко опишите ваш запрос (необязательно)" name="message"></textarea>
+            <!-- ⬇️ ИЗМЕНЕНО: теперь обязательное поле с required и убран "(необязательно)" -->
+            <textarea placeholder="Коротко опишите ваш запрос" name="message" required></textarea>
             <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
           </form>
           <p style="margin-top:12px; font-size:0.9rem; color:#666;">Отвечаю в течение 2 часов в рабочие часы</p>
