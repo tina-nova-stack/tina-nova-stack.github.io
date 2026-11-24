@@ -9,7 +9,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
   <style>
-    /* все стили без изменений (сохранены из предыдущего кода) */
     * {
       margin: 0;
       padding: 0;
@@ -311,7 +310,6 @@
       font-weight: 500;
     }
 
-    /* ===== ОБНОВЛЁННАЯ СЕТКА ДЛЯ ПУНКТОВ (теперь 10) ===== */
     .pain-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -340,7 +338,6 @@
       text-align: center;
     }
 
-    /* ========== СЕРТИФИКАТЫ ========== */
     .certificates-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -362,7 +359,6 @@
       box-shadow: 0 15px 30px rgba(106,59,138,0.2);
     }
 
-    /* ===== СИСТЕМА ===== */
     .system-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
@@ -399,7 +395,6 @@
       line-height: 1.5;
     }
 
-    /* ===== УСЛУГИ (КОМПАКТНЫЕ) ===== */
     .services-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
@@ -466,7 +461,6 @@
       margin-top: auto;
     }
 
-    /* ОТЗЫВЫ, БЛОГ, КОНТАКТЫ */
     .reviews-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -599,7 +593,6 @@
       transform: translateY(0);
     }
 
-    /* Адаптив */
     @media (max-width: 992px) {
       .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -640,7 +633,6 @@
 </head>
 <body>
 
-  <!-- ========== HEADER ========== -->
   <header>
     <div class="container">
       <div class="header-top">
@@ -685,7 +677,6 @@
     </div>
   </header>
 
-  <!-- ========== О СЕБЕ ========== -->
   <section class="section" id="about">
     <div class="container fade-in">
       <h2>Обо мне</h2>
@@ -708,7 +699,6 @@
     </div>
   </section>
 
-  <!-- ========== БОЛИ (ТЕПЕРЬ 10 ПУНКТОВ) ========== -->
   <section class="section section-alt" id="problems">
     <div class="container fade-in">
       <h2>С чем я работаю</h2>
@@ -723,12 +713,11 @@
         <div class="pain-item"><i class="fas fa-star"></i> Понять свои таланты и способности</div>
         <div class="pain-item"><i class="fas fa-balance-scale"></i> Найти баланс между работой и личной жизнью</div>
         <div class="pain-item"><i class="fas fa-tree"></i> Проработать родовые сценарии и привычки</div>
-        <div class="pain-item"><i class="fas fa-shield-alt"></i> Укрепить личные границы и уверенность</div> <!-- НОВЫЙ ПУНКТ -->
+        <div class="pain-item"><i class="fas fa-shield-alt"></i> Укрепить личные границы и уверенность</div>
       </div>
     </div>
   </section>
 
-  <!-- ========== СЕРТИФИКАТЫ ========== -->
   <section class="section" id="certificates">
     <div class="container fade-in">
       <h2>Сертификаты</h2>
@@ -741,7 +730,6 @@
     </div>
   </section>
 
-  <!-- ========== СИСТЕМА ========== -->
   <section class="section section-alt" id="system">
     <div class="container fade-in">
       <h2>Моя система</h2>
@@ -771,7 +759,6 @@
     </div>
   </section>
 
-  <!-- ========== УСЛУГИ И ЦЕНЫ ========== -->
   <section class="section" id="services">
     <div class="container fade-in">
       <h2>Услуги и цены</h2>
@@ -833,7 +820,6 @@
     </div>
   </section>
 
-  <!-- ========== ОТЗЫВЫ ========== -->
   <section class="section section-alt" id="reviews">
     <div class="container fade-in">
       <h2>Отзывы</h2>
@@ -854,7 +840,6 @@
     </div>
   </section>
 
-  <!-- ========== БЛОГ ========== -->
   <section class="section" id="blog">
     <div class="container fade-in">
       <h2>Полезные статьи</h2>
@@ -887,18 +872,29 @@
     </div>
   </section>
 
-  <!-- ========== КОНТАКТЫ ========== -->
   <section class="section section-alt" id="contact">
     <div class="container fade-in">
       <h2>Записаться на консультацию</h2>
       <div class="contact-grid">
         <div class="contact-form">
-          <form id="contactForm" onsubmit="event.preventDefault(); alert('Спасибо! Тина свяжется с вами в ближайшее время.');">
-            <input type="text" placeholder="Ваше имя" required />
-            <input type="text" placeholder="Ваша дата рождения (например, 15.05.1990)" required />
-            <input type="email" placeholder="Email" required />
-            <textarea placeholder="Коротко опишите ваш запрос (необязательно)"></textarea>
-            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
+          <form
+            id="contactForm"
+            action="https://formsubmit.co/vpozarskaa6@gmail.com"
+            method="POST"
+          >
+            <input type="text" name="name" placeholder="Ваше имя" required />
+            <input type="text" name="birthdate" placeholder="Ваша дата рождения (например, 15.05.1990)" required />
+            <input type="email" name="email" placeholder="Email" required />
+            <textarea name="message" placeholder="Коротко опишите ваш запрос (необязательно)"></textarea>
+
+            <input type="hidden" name="_subject" value="Новая заявка с сайта нумеролога Тины" />
+            <input type="hidden" name="_captcha" value="false" />
+            <input type="hidden" name="_template" value="table" />
+            <input type="text" name="_honey" style="display:none" />
+
+            <button type="submit" class="btn btn-primary" style="width:100%;">
+              <i class="fas fa-paper-plane"></i> Отправить заявку
+            </button>
           </form>
           <p style="margin-top:12px; font-size:0.9rem; color:#666;">Отвечаю в течение 2 часов в рабочие часы</p>
         </div>
@@ -924,14 +920,12 @@
     </div>
   </section>
 
-  <!-- ========== ФУТЕР ========== -->
   <footer>
     <div class="container">
       <p>© 2026 Нумеролог Тина. Все права защищены. <br /> Сайт создан с ❤️ для осознанных людей.</p>
     </div>
   </footer>
 
-  <!-- ========== JAVASCRIPT ========== -->
   <script>
     document.getElementById('calcBtn').addEventListener('click', function() {
       const dateInput = document.getElementById('birthdate');
@@ -987,6 +981,43 @@
 
     window.addEventListener('load', function() {
       document.getElementById('calcBtn').click();
+    });
+
+    // Отправка формы на почту через FormSubmit.co
+    const contactForm = document.getElementById('contactForm');
+
+    contactForm.addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      const originalBtnHTML = submitBtn.innerHTML;
+
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+
+      try {
+        const formData = new FormData(contactForm);
+
+        const response = await fetch('https://formsubmit.co/ajax/vpozarskaa6@gmail.com', {
+          method: 'POST',
+          headers: {
+            'Accept': 'application/json'
+          },
+          body: formData
+        });
+
+        if (!response.ok) {
+          throw new Error('Ошибка отправки');
+        }
+
+        alert('Спасибо! Заявка отправлена на почту. Тина свяжется с вами в ближайшее время.');
+        contactForm.reset();
+      } catch (error) {
+        alert('Не удалось отправить заявку. Попробуйте ещё раз или напишите в Telegram: @tina_nova3');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+      }
     });
   </script>
 </body>
