@@ -878,18 +878,13 @@
       <div class="contact-grid">
         <div class="contact-form">
           
-          <!-- ЧИСТАЯ ФОРМА WEB3FORMS -->
-          <form action="https://api.web3forms.com/submit" method="POST">
-            <!-- Ваш новый ключ доступа -->
+          <!-- Добавили id="contactForm" для скрипта -->
+          <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+            
             <input type="hidden" name="access_key" value="a611c6e1-10e3-4ef5-9908-b74f34ed0c1a">
-            
-            <!-- Тема письма -->
             <input type="hidden" name="subject" value="Новая заявка с сайта нумеролога Тины">
-            
-            <!-- Защита от спама (не трогать) -->
             <input type="checkbox" name="botcheck" style="display:none">
 
-            <!-- Поля для заполнения -->
             <input type="text" name="name" placeholder="Ваше имя" required />
             <input type="text" name="birthdate" placeholder="Ваша дата рождения (например, 15.05.1990)" required />
             <input type="email" name="email" placeholder="Email" required />
@@ -989,6 +984,55 @@
     // Автоматический расчет при загрузке страницы
     window.addEventListener('load', function() {
       document.getElementById('calcBtn').click();
+    });
+
+    // ==========================================
+    // ОТПРАВКА ФОРМЫ БЕЗ ПЕРЕЗАГРУЗКИ СТРАНИЦЫ
+    // ==========================================
+    const form = document.getElementById('contactForm');
+    
+    form.addEventListener('submit', function(e) {
+      e.preventDefault(); // Отменяем перезагрузку страницы
+      
+      const btn = form.querySelector('button[type="submit"]');
+      const originalBtnText = btn.innerHTML;
+      
+      // Меняем кнопку на время отправки
+      btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+      btn.disabled = true;
+
+      const formData = new FormData(form);
+      const object = Object.fromEntries(formData);
+      const json = JSON.stringify(object);
+
+      // Отправляем данные в Web3Forms через AJAX
+      fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: json
+      })
+      .then(async (response) => {
+        let json = await response.json();
+        if (response.status == 200) {
+          alert('Спасибо! Ваша заявка успешно отправлена. Тина свяжется с вами.');
+          form.reset(); // ОЧИЩАЕМ ФОРМУ
+        } else {
+          console.log(response);
+          alert(json.message || 'Произошла ошибка. Попробуйте позже.');
+        }
+      })
+      .catch(error => {
+        console.log(error);
+        alert('Ошибка сети. Проверьте интернет и попробуйте снова.');
+      })
+      .finally(() => {
+        // Возвращаем кнопку в исходное состояние
+        btn.innerHTML = originalBtnText;
+        btn.disabled = false;
+      });
     });
   </script>
 </body>
