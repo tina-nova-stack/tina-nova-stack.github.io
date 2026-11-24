@@ -236,11 +236,45 @@
     .result-desc.show {
       display: block;
     }
-    nav {
-      background: rgba(255,255,255,0.05);
-      padding: 12px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.08);
+    
+    /* ===== МЕНЮ С БУРГЕРОМ ===== */
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
       width: 100%;
+      background: rgba(255,255,255,0.05);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+    .nav-wrap .menu-toggle {
+      display: none;
+      flex-direction: column;
+      cursor: pointer;
+      gap: 5px;
+      padding: 5px;
+    }
+    .nav-wrap .menu-toggle span {
+      display: block;
+      width: 28px;
+      height: 3px;
+      background: white;
+      border-radius: 3px;
+      transition: 0.3s;
+    }
+    .nav-wrap .menu-toggle.active span:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    .nav-wrap .menu-toggle.active span:nth-child(2) {
+      opacity: 0;
+    }
+    .nav-wrap .menu-toggle.active span:nth-child(3) {
+      transform: rotate(-45deg) translate(5px, -5px);
+    }
+    nav {
+      flex: 1;
+      display: flex;
+      justify-content: center;
     }
     nav ul {
       display: flex;
@@ -259,6 +293,8 @@
     nav a:hover {
       color: var(--gold);
     }
+
+    /* Остальные стили */
     .about-grid {
       display: flex;
       gap: 50px;
@@ -587,6 +623,8 @@
       opacity: 1;
       transform: translateY(0);
     }
+
+    /* ===== АДАПТИВ ===== */
     @media (max-width: 992px) {
       .services-grid {
         grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -597,8 +635,80 @@
       }
     }
     @media (max-width: 768px) {
+      .header-top {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .social-header {
+        gap: 12px;
+      }
+      .social-header a {
+        font-size: 1.6rem;
+      }
+      /* Бургер-меню */
+      .nav-wrap .menu-toggle {
+        display: flex;
+      }
+      nav {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: center;
+        background: rgba(0,0,0,0.2);
+        padding: 15px 0;
+        border-radius: 12px;
+        margin-top: 10px;
+      }
+      nav.open {
+        display: flex;
+      }
+      nav ul {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
+      }
+      nav a {
+        font-size: 1.1rem;
+        padding: 8px 0;
+        display: block;
+        width: 100%;
+        text-align: center;
+      }
+      .hero-text {
+        text-align: center;
+      }
+      .hero-text .btn-group {
+        justify-content: center;
+      }
+      .hero-text p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .hero-calc {
+        flex: 1 1 100%;
+      }
+      .about-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+      h2:after {
+        left: 50%;
+        transform: translateX(-50%);
+      }
+      .section {
+        padding: 50px 0;
+      }
+      .certificates-grid {
+        grid-template-columns: 1fr;
+        gap: 16px;
+      }
+      .certificates-grid img {
+        max-height: none;
+      }
       .services-grid {
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        grid-template-columns: 1fr;
+        gap: 16px;
       }
       .service-card {
         padding: 20px 16px;
@@ -606,21 +716,116 @@
       .service-card ul li {
         font-size: 0.9rem;
       }
-      h1 { font-size: 2.4rem !important; }
-      .hero-text { text-align: center; }
-      .hero-text .btn-group { justify-content: center; }
-      .hero-text p { margin-left: auto; margin-right: auto; }
-      .hero-calc { flex: 1 1 100%; }
-      .about-grid { flex-direction: column; text-align: center; }
-      h2:after { left: 50%; transform: translateX(-50%); }
-      .section { padding: 50px 0; }
-      .header-top { flex-direction: column; gap: 10px; }
-      .certificates-grid {
+      .pain-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .pain-item {
+        padding: 16px 12px;
+        font-size: 0.9rem;
+      }
+      .pain-item i {
+        font-size: 1.4rem;
+        width: 30px;
+      }
+      .contact-grid {
+        flex-direction: column;
+        gap: 20px;
+      }
+      .contact-form {
+        padding: 20px;
+      }
+      .contact-info .item {
+        gap: 12px;
+      }
+      .contact-info .item i {
+        font-size: 1.3rem;
+        width: 40px;
+        height: 40px;
+      }
+      h1 {
+        font-size: 2rem !important;
+      }
+      h2 {
+        font-size: 1.8rem !important;
+      }
+      .hero-text h1 {
+        font-size: 2.4rem !important;
+      }
+      .hero-text p {
+        font-size: 1rem;
+      }
+      .btn {
+        padding: 12px 24px;
+        font-size: 0.9rem;
+      }
+    }
+    @media (max-width: 480px) {
+      .pain-grid {
+        grid-template-columns: 1fr;
+      }
+      .container {
+        padding: 0 15px;
+      }
+      .section {
+        padding: 40px 0;
+      }
+      .hero-text h1 {
+        font-size: 2rem !important;
+      }
+      .hero-calc {
+        padding: 20px;
+      }
+      .hero-calc h3 {
+        font-size: 1.1rem;
+      }
+      .hero-calc input {
+        padding: 12px 14px;
+        font-size: 0.9rem;
+      }
+      .result-number {
+        font-size: 1.8rem;
+      }
+      .result-desc {
+        font-size: 0.85rem;
+      }
+      .about-photo img {
+        max-width: 180px;
+      }
+      .about-text h3 {
+        font-size: 1.5rem;
+      }
+      .badge-group {
+        gap: 10px;
+        justify-content: center;
+      }
+      .badge {
+        font-size: 0.75rem;
+        padding: 6px 12px;
+      }
+      .system-grid {
         grid-template-columns: 1fr;
         gap: 16px;
       }
-      .certificates-grid img {
-        max-height: none;
+      .reviews-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .blog-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+      .contact-form input,
+      .contact-form textarea {
+        font-size: 0.9rem;
+        padding: 12px 14px;
+      }
+      .contact-form .btn {
+        font-size: 0.9rem;
+        padding: 12px;
+      }
+      .social-header a {
+        font-size: 1.4rem;
       }
     }
   </style>
@@ -638,17 +843,24 @@
           <a href="https://max.ru/u/f9LHodD0cOL2WrAv5ReCvoYVC8abUczZZbn2r4dFDY0FUSfpjcejiJRxFJ8" target="_blank" aria-label="Max"><i class="fas fa-globe"></i></a>
         </div>
       </div>
-      <nav>
-        <ul>
-          <li><a href="#about">Обо мне</a></li>
-          <li><a href="#certificates">Сертификаты</a></li>
-          <li><a href="#system">Моя система</a></li>
-          <li><a href="#services">Услуги</a></li>
-          <li><a href="#reviews">Отзывы</a></li>
-          <li><a href="#blog">Блог</a></li>
-          <li><a href="#contact">Контакты</a></li>
-        </ul>
-      </nav>
+      <div class="nav-wrap">
+        <div class="menu-toggle" id="menuToggle" aria-label="Меню">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <nav id="mainNav">
+          <ul>
+            <li><a href="#about">Обо мне</a></li>
+            <li><a href="#certificates">Сертификаты</a></li>
+            <li><a href="#system">Моя система</a></li>
+            <li><a href="#services">Услуги</a></li>
+            <li><a href="#reviews">Отзывы</a></li>
+            <li><a href="#blog">Блог</a></li>
+            <li><a href="#contact">Контакты</a></li>
+          </ul>
+        </nav>
+      </div>
       <div class="hero">
         <div class="hero-text">
           <h1>Подсвечиваю ваши <span>скрытые проблемы</span> и помогаю найти ясные решения через цифры даты рождения</h1>
@@ -678,8 +890,7 @@
       <h2>Обо мне</h2>
       <div class="about-grid">
         <div class="about-photo">
-          <!-- Замените your-photo.jpg на путь к вашему изображению -->
-          <img src="your-photo.jpg" alt="Нумеролог Тина" />
+          <img src="https://psv4.vkuserphoto.ru/s/v1/d2/nrUS73Brz27OaR-KLCTF-9XXRyFu6zeJU0wa9UVQsuRykEujNtY-NBI0QLAIehCbohWWotYrG8j2eGlZiNekpXYaqhqcUXWldyNJXTxeQ4sTO7Fb8SKq-TRpe62D9yl5A5WQX33voY1d/IMG_20261124_133545_452.jpg" alt="Нумеролог Тина" />
         </div>
         <div class="about-text">
           <h3>Тина Нова</h3>
@@ -885,8 +1096,8 @@
             <input type="text" placeholder="Ваше имя" name="name" required />
             <input type="text" placeholder="Ваша дата рождения (например, 15.05.1990)" name="birthdate" required />
             <input type="email" placeholder="Email" name="email" required />
-            <textarea placeholder="Коротко опишите ваш запрос (необязательно)" name="message"></textarea>
-            <button type="submit" class="btn btn-primary" style="width:100%;"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
+            <textarea placeholder="Коротко опишите ваш запрос" name="message" required></textarea>
+            <button type="submit" class="btn btn-primary" style="width:100%;" id="submitBtn"><i class="fas fa-paper-plane"></i> Отправить заявку</button>
           </form>
           <p style="margin-top:12px; font-size:0.9rem; color:#666;">Отвечаю в течение 2 часов в рабочие часы</p>
         </div>
@@ -921,11 +1132,23 @@
 
   <!-- ========== JAVASCRIPT ========== -->
   <script>
-    // ===== НАСТРОЙКИ ДЛЯ ОТПРАВКИ НА ПОЧТУ =====
-    // FormSubmit.co — бесплатный сервис без регистрации.
-    // ⚠️ При первой отправке формы на vpozarskaa6@gmail.com придёт письмо
-    // со ссылкой для активации. Нажмите её — и заявки начнут приходить.
-    const RECIPIENT_EMAIL = 'vpozarskaa6@gmail.com';
+    // ===== БУРГЕР-МЕНЮ =====
+    document.getElementById('menuToggle').addEventListener('click', function() {
+      this.classList.toggle('active');
+      document.getElementById('mainNav').classList.toggle('open');
+    });
+
+    // Закрывать меню при клике на ссылку (для мобильных)
+    document.querySelectorAll('#mainNav a').forEach(link => {
+      link.addEventListener('click', function() {
+        document.getElementById('menuToggle').classList.remove('active');
+        document.getElementById('mainNav').classList.remove('open');
+      });
+    });
+
+    // ===== НАСТРОЙКА ПОЧТЫ ДЛЯ ЗАЯВОК =====
+    // Все заявки с формы приходят на этот адрес через сервис FormSubmit.co
+    const TARGET_EMAIL = 'vpozarskaa6@gmail.com';
 
     // ===== КАЛЬКУЛЯТОР ЧИСЛА СУДЬБЫ =====
     document.getElementById('calcBtn').addEventListener('click', function() {
@@ -970,54 +1193,60 @@
       descDisplay.classList.add('show');
     });
 
-    // ===== ОТПРАВКА ФОРМЫ НА EMAIL ЧЕРЕЗ FORMSUBMIT.CO =====
+    // ===== ОТПРАВКА ФОРМЫ НА ПОЧТУ =====
     document.getElementById('contactForm').addEventListener('submit', function(e) {
       e.preventDefault();
 
       const form = e.target;
+      const submitBtn = document.getElementById('submitBtn');
       const formData = new FormData(form);
       const name = formData.get('name') || 'Не указано';
       const birthdate = formData.get('birthdate') || 'Не указано';
       const email = formData.get('email') || 'Не указано';
       const message = formData.get('message') || 'Не указано';
 
-      const submitBtn = form.querySelector('button[type="submit"]');
-      const originalBtnHtml = submitBtn.innerHTML;
+      const originalBtnHTML = submitBtn.innerHTML;
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправка...';
+      submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Отправляем...';
 
-      fetch('https://formsubmit.co/ajax/' + RECIPIENT_EMAIL, {
+      fetch('https://formsubmit.co/ajax/' + TARGET_EMAIL, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         body: JSON.stringify({
-          name: name,
-          birthdate: birthdate,
-          email: email,
-          message: message,
-          _subject: '🔔 Новая заявка с сайта нумеролога Тины',
+          'Имя': name,
+          'Дата рождения': birthdate,
+          'Email': email,
+          'Сообщение': message,
+          _subject: '🔔 Новая заявка с сайта — Нумеролог Тина',
           _template: 'table',
           _captcha: 'false'
         })
       })
       .then(response => response.json())
       .then(result => {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnHTML;
+
         const ok = result.success === true || result.success === 'true';
         if (ok) {
           alert('Спасибо! Тина свяжется с вами в ближайшее время.');
           form.reset();
         } else {
-          alert('Ошибка при отправке. Попробуйте ещё раз или напишите нам в Telegram.');
+          // Первая отправка требует подтверждения адреса почты
+          if (result.message && /confirm|activat|verification/i.test(result.message)) {
+            alert('Остался один шаг: на почту ' + TARGET_EMAIL + ' пришло письмо от FormSubmit — перейдите по ссылке в нём, чтобы активировать приём заявок. После этого заявки будут приходить автоматически.');
+          } else {
+            alert('Ошибка при отправке. Попробуйте ещё раз или напишите нам в Telegram.');
+          }
         }
       })
       .catch(() => {
-        alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
-      })
-      .finally(() => {
         submitBtn.disabled = false;
-        submitBtn.innerHTML = originalBtnHtml;
+        submitBtn.innerHTML = originalBtnHTML;
+        alert('Ошибка соединения. Проверьте интернет и попробуйте снова.');
       });
     });
 
